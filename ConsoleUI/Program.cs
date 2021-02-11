@@ -1,4 +1,5 @@
 ﻿using Business.Concrete;
+using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using System;
@@ -9,47 +10,36 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("GetAll-----------------------");
+            Console.WriteLine("GetCarsByBrandId ------------------------ ");
 
-            CarManager carManager = new CarManager(new InMemoryCarDal());
-            foreach (var car in carManager.GetAll())
+            CarManager carManager1 = new CarManager(new EfCarDal());
+            foreach (var car in carManager1.GetCarsByBrandId(3))
             {
-                Console.WriteLine(" Id:{0} Marka Id:{1} Renk Id:{2} Model Yılı:{3} Günlük Ücret:{4} Açıklama:{5} ",car.Id,car.BrandId,car.ColorId,car.ModelYear,car.DailyPrice,car.Description);
+                Console.WriteLine("Brand ID:{0} Color ID:{1} Model Year:{2} Daily Price:{3} Description:{4}",car.BrandId,car.ColorId,car.ModelYear,car.DailyPrice,car.Description_);
             }
 
-            Console.WriteLine("GetById-----------------------");
+            Console.WriteLine("GetCarsByColorId -------------------------");
 
-            CarManager getById = new CarManager(new InMemoryCarDal());
-            var result = getById.GetById(5);
-            foreach (var id in result)
+            CarManager carManager2 = new CarManager(new EfCarDal());
+            foreach (var car in carManager2.GetCarsByColorId(2))
             {
-                Console.WriteLine("Marka Id:{0} Renk Id:{1} Model Yılı:{2} Günlük Ücret:{3} Açıklama:{4} ", id.BrandId, id.ColorId, id.ModelYear, id.DailyPrice, id.Description);
+                Console.WriteLine("Brand ID:{0} Color ID:{1} Model Year:{2} Daily Price:{3} Description:{4}", car.BrandId, car.ColorId, car.ModelYear, car.DailyPrice, car.Description_);
             }
 
-            Console.WriteLine("Add-----------------------------");
+            Console.WriteLine("Ekleme işlemi esnasında çalıştırılacak kurallar");
 
-            Car addCar = new Car { Id = 6, BrandId = 5, ColorId = 4, ModelYear = 1995, DailyPrice = 2000, Description = "Citroen" };
-            carManager.Add(addCar);
-            foreach (var item in carManager.GetAll())
+            CarManager carManager3 = new CarManager(new EfCarDal());
+            carManager3.Add(new Car
+            { 
+                BrandId=4,
+                ColorId=3,
+                ModelYear=2010,
+                DailyPrice=0,
+                Description_="D"
+            });
+            foreach (var car in carManager3.GetAll())
             {
-                Console.WriteLine("Id:{0} Marka Id:{1} Renk Id:{2} Model Yılı:{3} Günlük Ücret:{4} Açıklama:{5} ", item.Id, item.BrandId, item.ColorId, item.ModelYear, item.DailyPrice, item.Description);
-            }
-
-            Console.WriteLine("Update--------------------------");
-
-            Car updateCar=new Car { Id = 2, BrandId = 5, ColorId = 4, ModelYear = 2015, DailyPrice = 7000, Description = "Volvo" };
-            carManager.Update(updateCar);
-            foreach (var item in carManager.GetAll())
-            {
-                Console.WriteLine("Id:{0} Marka Id:{1} Renk Id:{2} Model Yılı:{3} Günlük Ücret:{4} Açıklama:{5} ", item.Id, item.BrandId, item.ColorId, item.ModelYear, item.DailyPrice, item.Description);
-            }
-
-            Console.WriteLine("Delete---------------------------");
-
-            carManager.Delete(addCar);
-            foreach (var item in carManager.GetAll())
-            {
-                Console.WriteLine("Id:{0} Marka Id:{1} Renk Id:{2} Model Yılı:{3} Günlük Ücret:{4} Açıklama:{5} ", item.Id, item.BrandId, item.ColorId, item.ModelYear, item.DailyPrice, item.Description);
+                Console.WriteLine("Brand ID:{0} Color ID:{1} Model Year:{2} Daily Price:{3} Description:{4}", car.BrandId, car.ColorId, car.ModelYear, car.DailyPrice, car.Description_);
             }
         }
     }

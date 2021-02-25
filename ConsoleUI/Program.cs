@@ -21,7 +21,7 @@ namespace ConsoleUI
             //---Brand'a ait CRUD işlemleri
             //AddedBrand();
             //UpdatedBrand();
-            //DeletedBrand();
+            DeletedBrand();
             //GetAllBrand();
             //GetByIdBrand();
             //--Color'a ait CRUD işlemleri
@@ -33,8 +33,8 @@ namespace ConsoleUI
             //AddedUser();
             //AddedCustomer();
             //UpdatedCustomer();
-            AddedRental();
-            GetRentalDetails();
+            //AddedRental();
+            //GetRentalDetails();
         }
 
         private static void GetRentalDetails()
@@ -167,7 +167,7 @@ namespace ConsoleUI
         private static void DeletedBrand()
         {
             BrandManager brandManager = new BrandManager(new EfBrandDal());
-            brandManager.Delete(new Brand { Id = 4 });
+            brandManager.Delete(new Brand { Id = 2002 });
             foreach (var brand in brandManager.GetAll().Data)
             {
                 Console.WriteLine(brand.Name);

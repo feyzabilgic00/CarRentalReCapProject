@@ -6,7 +6,9 @@ namespace Business.Constants
 {
     public static class Messages
     {
-        public static string ProductAdded = "Ürün eklendi";
+        public static string AddedRental = "Kiralama eklendi";
+        public static string AddedCar = "Araba eklendi";
+        public static string ErrorRentalAdd = "Hata oluştu";
         public static string ProductDeleted = "Ürün silindi";
         public static string ProductUpdated = "Ürün güncellendi";
         public static string ProductNameInvalid = "Ürün ismi geçersiz";

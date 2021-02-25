@@ -6,14 +6,15 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace DataAccess.Concrete.EntityFramework
 {
     public class EfRentalDal : EfEntityRepositoryBase<Rental, RentalCarContext>, IRentalDal
     {
-        public List<RentalDetailDto> GetRentalDetails()
+        public List<RentalDetailDto> GetRentalDetails(Expression<Func<Rental, bool>> filter = null)
         {
-            using (RentalCarContext context=new RentalCarContext())
+            using (RentalCarContext context = new RentalCarContext())
             {
                 var result = from r in context.Rentals
                              join car in context.Cars on r.CarId equals car.Id
@@ -23,10 +24,10 @@ namespace DataAccess.Concrete.EntityFramework
                              select new RentalDetailDto
                              {
                                  CarName = car.Description_,
-                                 UserName = u.FirstName+" "+u.LastName,
+                                 UserName = u.FirstName + " " + u.LastName,
                                  CustomerName = c.CustomerName,
                                  RentDate = r.RentDate,
-                                 ReturnDate = r.ReturnDate?? DateTime.Now
+                                 ReturnDate = r.ReturnDate ?? DateTime.Now
                              };
                 return result.ToList();
             }

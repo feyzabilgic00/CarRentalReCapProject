@@ -86,17 +86,17 @@ namespace ConsoleUI
             }
         }
 
-        private static void AddedUser()
-        {
-            UserManager userManager = new UserManager(new EfUserDal());
-            userManager.Add(
-               new User { FirstName = "Fahriye", LastName = "Kuzu", Email = "fahriyee@hotmail.com", Password = "12345678" }
-            );
-            foreach (var user in userManager.GetAll().Data)
-            {
-                Console.WriteLine("{0} {1}", user.FirstName, user.LastName);
-            }
-        }
+        //private static void AddedUser()
+        //{
+        //    UserManager userManager = new UserManager(new EfUserDal());
+        //    userManager.Add(
+        //       new User { FirstName = "Fahriye", LastName = "Kuzu", Email = "fahriyee@hotmail.com", Password = "12345678" }
+        //    );
+        //    foreach (var user in userManager.GetAll().Data)
+        //    {
+        //        Console.WriteLine("{0} {1}", user.FirstName, user.LastName);
+        //    }
+        //}
 
         private static void GetByIdColor()
         {

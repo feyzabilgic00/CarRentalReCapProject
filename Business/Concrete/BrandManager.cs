@@ -37,7 +37,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.BrandDeleted);
         }
         [CacheAspect]
-        [PerformanceAspect(5)]
+        //[PerformanceAspect(60)]
         public IDataResult<List<Brand>> GetAll()
         {
             return new SuccessDataResult<List<Brand>>(_brandDal.GetAll());

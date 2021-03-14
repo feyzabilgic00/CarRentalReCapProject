@@ -36,7 +36,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ColorDeleted);
         }
         [CacheAspect]
-        [PerformanceAspect(5)]
+        //[PerformanceAspect(5)]
         public IDataResult<List<Color>> GetAll()
         {
             return new SuccessDataResult<List<Color>>(_colorDal.GetAll());

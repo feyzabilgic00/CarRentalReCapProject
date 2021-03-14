@@ -23,6 +23,7 @@ namespace DataAccess.Concrete.EntityFramework
                              join u in context.Users on c.UserId equals u.Id
                              select new RentalDetailDto
                              {
+                                 Id=b.Id,
                                  CarName = car.Description_,
                                  UserName = u.FirstName + " " + u.LastName,
                                  CustomerName = c.CustomerName,
